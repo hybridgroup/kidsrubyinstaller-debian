@@ -1,0 +1,3 @@
+#!/bin/sh
+PATH='/usr/local/kidsruby/bin/':$PATH
+ruby /usr/local/kidsruby/main.rb
