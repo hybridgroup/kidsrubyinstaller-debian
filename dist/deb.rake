@@ -9,7 +9,7 @@ file pkg("/kidsruby-#{version}.deb") => distribution_files do |t|
       assemble resource("deb/kidsrubylogo.png"), "pixmaps/kidsrubylogo.png"
     end
 
-    sh "tar czvf data.tar.gz usr/local/kidsruby usr/share/ --owner=root --group=root"
+    sh "tar czvf data.tar.gz usr/local/kidsruby usr/share/"
 
     assemble resource("deb/control"), "control"
     assemble resource("deb/postinst"), "postinst"
