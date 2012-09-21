@@ -2,6 +2,7 @@ file pkg("/kidsruby-#{version}.deb") => distribution_files do |t|
   mkchdir(File.dirname(t.name)) do
     mkchdir("usr/local/kidsruby") do
       assemble_distribution
+      assemble_gems
       assemble resource("deb/kidsruby"), "bin/kidsruby", 0755
     end
     mkchdir("usr/share") do
