@@ -1,7 +1,7 @@
 #Kidsruby debian package creator
 This ruby script creates a kidsruby debian installer package which is compatiable with Ubuntu 11.04, 11.10, 12.04, Debian 6, 7 and raspbian.
 
-This script depends upon Rake and Git, so to configure your system for script generation run 'bundle install' in your kidsrubyinstaller-debian project root directory.
+This script depends upon ruby, rake, bundler and git. To configure your system for script generation you must have ruby installed and bundler. You must then run 'bundle install' in your kidsrubyinstaller-debian project root directory.
 
 A debian package is then created by issuing:
   rake deb:make
