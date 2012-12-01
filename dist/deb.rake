@@ -2,8 +2,11 @@ file pkg("/kidsruby-#{version}.deb") => distribution_files do |t|
   mkchdir(File.dirname(t.name)) do
     mkchdir("usr/local/kidsruby") do
       assemble_distribution
-      assemble_gems
       assemble resource("deb/kidsruby"), "bin/kidsruby", 0755
+    end
+    mkchdir("usr/local/kidsruby/vendor/dependencies") do
+      assemble resource("deb/libQtWebKit.so.4"), "libQtWebKit.so.4"
+      assemble resource("deb/libruby.so.1.9"), "libruby.so.1.9"
     end
     mkchdir("usr/share") do
       assemble resource("deb/kidsruby.desktop"), "applications/kidsruby.desktop"
@@ -12,8 +15,8 @@ file pkg("/kidsruby-#{version}.deb") => distribution_files do |t|
 
     sh "tar czvf data.tar.gz usr/local/kidsruby usr/share/"
 
-    assemble resource("deb/control"), "control"
-    assemble resource("deb/postinst"), "postinst"
+    assemble_erb resource("deb/control"), "control"
+    assemble_erb resource("deb/postinst"), "postinst"
 
     sh "tar czvf control.tar.gz control postinst"
 
@@ -30,6 +33,7 @@ end
 namespace :deb do
   task :make do
     Rake::Task['deb:clone'].invoke
+    Rake::Task['deb:install_gems'].invoke
     Rake::Task['deb:build'].invoke
     Rake::Task['deb:copy'].invoke
     Rake::Task['deb:clean'].invoke
@@ -39,9 +43,14 @@ namespace :deb do
   task :clone do
     fetch_current 
   end
+
+  desc "Install gems"
+  task :install_gems do
+    install_gems
+  end
   
   desc "Build a .deb package"
-  task :build  => pkg("/kidsruby-#{version}.deb")
+  task :build => pkg("/kidsruby-#{version}.deb")
 
   desc "Copy .deb package into project root directory"
   task :copy do

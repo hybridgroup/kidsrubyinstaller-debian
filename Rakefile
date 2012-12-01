@@ -2,23 +2,41 @@ require "erb"
 require "fileutils"
 require "tmpdir"
 require 'git'
+require 'bundler'
 
 Dir[File.expand_path("../dist/**/*.rake", __FILE__)].each do |rake|
   import rake
 end
 
 def fetch_current
-  puts 'Cloning kidsruby'
+  puts 'Cloning kidsruby...'
   Git.clone("https://github.com/hybridgroup/kidsruby.git", 'tmp') 
 end
 
+def install_gems
+  puts 'Bundling gems...'
+  Dir.chdir(project_root)do
+    Bundler.with_clean_env do
+      %x{bundle install --path vendor}
+    end
+  end
+end
+
 def assemble(source, target, perms=0644)
+  FileUtils.mkdir_p(File.dirname(target))
+  File.open(target, "w") do |f|
+    f.puts File.read(source)
+  end
+  File.chmod(perms, target)
+end
+def assemble_erb(source, target, perms=0644)
   FileUtils.mkdir_p(File.dirname(target))
   File.open(target, "w") do |f|
     f.puts ERB.new(File.read(source)).result(binding)
   end
   File.chmod(perms, target)
 end
+
 
 def assemble_distribution(target_dir=Dir.pwd)
   distribution_files.each do |source|
@@ -28,30 +46,12 @@ def assemble_distribution(target_dir=Dir.pwd)
   end
 end
 
-GEM_BLACKLIST = %w( bundler kidsruby)
-
-def assemble_gems(target_dir=Dir.pwd)
-  lines = %x{ bundle show }.strip.split("\n")
-  raise "error running bundler" unless $?.success?
-
-  %x{ env BUNDLE_WITHOUT="development:test" bundle show }.split("\n").each do |line|
-    if line =~ /^  \* (.*?) \((.*?)\)/
-      next if GEM_BLACKLIST.include?($1)
-      puts "vendoring: #{$1}-#{$2}"
-      gem_dir = %x{ bundle show #{$1} }.strip
-      FileUtils.mkdir_p "#{target_dir}/vendor/gems"
-      %x{ cp -R "#{gem_dir}" "#{target_dir}/vendor/gems" }
-    end
-  end.compact
-end
-
-
 def clean(file)
   rm file if File.exists?(file)
 end
 
 def distribution_files
-  except = Dir[File.expand_path("../tmp/{dist,spec}/**/*", __FILE__)].select do |file|
+  except = Dir[File.expand_path("../tmp/{.bundle,dist,spec}/**/*", __FILE__)].select do |file|
     File.file?(file)
   end
   except.concat(Dir[File.expand_path("../tmp/Rakefile", __FILE__)])

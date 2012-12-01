@@ -1,3 +1,6 @@
-#!/bin/sh
-PATH='/usr/local/kidsruby/bin/':$PATH
+#!/bin/bash
+export PATH='/usr/local/kidsruby/bin/':$PATH
+export GEM_PATH=/usr/local/kidsruby/vendor/ruby/1.9.1
+export LD_LIBRARY_PATH=/usr/local/kidsruby/vendor/dependencies
+
 ruby /usr/local/kidsruby/main.rb
