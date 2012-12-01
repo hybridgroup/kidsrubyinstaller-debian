@@ -13,11 +13,24 @@ def fetch_current
   Git.clone("https://github.com/hybridgroup/kidsruby.git", 'tmp') 
 end
 
+def compile_ruby
+  puts 'Compiling ruby...'
+  FileUtils.mkdir_p('ruby_tmp')
+  Dir.chdir('ruby_tmp') do
+    system("wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p320.tar.gz && tar -xzvf ruby-1.9.2-p320.tar.gz")
+    Dir.chdir('ruby-1.9.2-p320') do
+      system("./configure --prefix=#{project_root}/ruby --enable-shared --disable-install-doc && make && make install")
+    end
+  end
+  Dir.chdir(project_root+"/ruby") do
+    system("GEM_HOME=#{project_root}/ruby/lib/ruby/gems/1.9.1/ && GEM_PATH=#{project_root}/ruby/lib/ruby/gems/1.9.1/ && bin/gem install bundler")
+  end
+end
 def install_gems
   puts 'Bundling gems...'
-  Dir.chdir(project_root)do
+  Dir.chdir(project_root) do
     Bundler.with_clean_env do
-      %x{bundle install --path vendor}
+      system("PATH=#{project_root}/ruby/bin:$PATH && #{project_root}/ruby/lib/ruby/gems/1.9.1/gems/bundler-1.2.3/bin/bundle install --path vendor")
     end
   end
 end
@@ -90,4 +103,7 @@ def version
 end
 def installedsize
   File.size?(File.expand_path("../pkg/data.tar.gz", __FILE__)) / 1024
+end
+def architecture
+  %x{uname -p}
 end

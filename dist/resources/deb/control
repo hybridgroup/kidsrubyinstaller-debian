@@ -4,6 +4,5 @@ Installed-Size: <%= installedsize %>
 Section: main
 Priority: standard
 Architecture: all
-Depends: ruby1.9.1
 Maintainer: kidsruby
 Description: Teaching kids fun stuff!

@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e -u
-export PATH=$PATH:/var/lib/gems/1.9.1/bin/
-
 ln -sf /usr/local/kidsruby/bin/kidsruby /usr/bin/kidsruby
-ln -sf /usr/bin/ruby1.9.1 /usr/local/kidsruby/bin/ruby
 
 mkdir -p /usr/local/kidsruby/vendor/dependencies
 
@@ -18,3 +15,5 @@ ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/s
 ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtsvg/libsmokeqtsvg.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtsvg.so.3
 ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtwebkit/libsmokeqtwebkit.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtwebkit.so.3
 ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtxml/libsmokeqtxml.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtxml.so.3
+chmod +x /usr/local/kidsruby/ruby/bin/*
+chmod +x /usr/local/kidsruby/lib/libruby.so*

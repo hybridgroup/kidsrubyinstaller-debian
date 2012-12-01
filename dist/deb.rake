@@ -1,4 +1,4 @@
-file pkg("/kidsruby-#{version}.deb") => distribution_files do |t|
+file pkg("/kidsruby-#{version}-#{architecture}.deb") => distribution_files do |t|
   mkchdir(File.dirname(t.name)) do
     mkchdir("usr/local/kidsruby") do
       assemble_distribution
@@ -6,7 +6,6 @@ file pkg("/kidsruby-#{version}.deb") => distribution_files do |t|
     end
     mkchdir("usr/local/kidsruby/vendor/dependencies") do
       assemble resource("deb/libQtWebKit.so.4"), "libQtWebKit.so.4"
-      assemble resource("deb/libruby.so.1.9"), "libruby.so.1.9"
     end
     mkchdir("usr/share") do
       assemble resource("deb/kidsruby.desktop"), "applications/kidsruby.desktop"
@@ -33,6 +32,7 @@ end
 namespace :deb do
   task :make do
     Rake::Task['deb:clone'].invoke
+    Rake::Task['deb:compile_ruby'].invoke
     Rake::Task['deb:install_gems'].invoke
     Rake::Task['deb:build'].invoke
     Rake::Task['deb:copy'].invoke
@@ -42,6 +42,11 @@ namespace :deb do
   desc "Clone into kidsruby rep"
   task :clone do
     fetch_current 
+  end
+
+  desc "Configure local ruby"
+  task :compile_ruby do
+    compile_ruby
   end
 
   desc "Install gems"
@@ -54,12 +59,13 @@ namespace :deb do
 
   desc "Copy .deb package into project root directory"
   task :copy do
-   FileUtils.copy(pkg("/kidsruby-#{version}.deb"),"kidsruby-#{version}.deb") 
+   FileUtils.copy(pkg("/kidsruby-#{version}-#{architecture}.deb"),"kidsruby-#{version}-#{architecture}.deb") 
   end
 
   desc "Remove build artifacts for .deb"
   task :clean do
     FileUtils.rm_rf("pkg/") if Dir.exists?("pkg/")
     FileUtils.rm_rf("tmp/") if Dir.exists?("tmp/")
+    FileUtils.rm_rf("ruby_tmp/") if Dir.exists?("ruby_tmp/")
   end
 end
