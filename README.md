@@ -1,7 +1,9 @@
 #Kidsruby debian package creator
 This ruby script creates a kidsruby debian installer package which is compatiable with debian based distributions
 
-To configure your system for package creation
+This script requires ruby and bundler, it is suggested you use [rvm](https://rvm.io/)
+
+To configure your system and create the package
 ~~~
   $ sudo apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build-essential libssl-dev libreadline6-dev zlib1g-dev git libqt4-dev cmake libyaml-dev wget
   $ git clone https://github.com/hybridgroup/kidsrubyinstaller-debian.git
