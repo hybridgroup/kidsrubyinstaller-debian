@@ -1,4 +1,4 @@
-file pkg("/kidsruby-#{version}-#{architecture}.deb") => distribution_files do |t|
+file pkg("/kidsruby-#{version}.deb") => distribution_files do |t|
   mkchdir(File.dirname(t.name)) do
     mkchdir("usr/local/kidsruby") do
       assemble_distribution

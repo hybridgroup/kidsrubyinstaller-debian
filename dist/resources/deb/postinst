@@ -16,4 +16,4 @@ ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/s
 ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtwebkit/libsmokeqtwebkit.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtwebkit.so.3
 ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtxml/libsmokeqtxml.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtxml.so.3
 chmod +x /usr/local/kidsruby/ruby/bin/*
-chmod +x /usr/local/kidsruby/lib/libruby.so*
+chmod +x /usr/local/kidsruby/ruby/lib/libruby.so*
