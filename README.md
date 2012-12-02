@@ -10,3 +10,5 @@ To configure your system for package creation
   $ rake deb:make
 ~~~
 These commands will create a debian installer based upon the current Kidsruby master branch and place the debain package in the kidsrubyinstaller-debian project root directory.
+
+NOTE: For a raspberry pi compatible package you must build this package on a raspberry pi
