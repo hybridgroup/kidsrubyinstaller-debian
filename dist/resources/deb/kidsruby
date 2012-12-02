@@ -2,5 +2,6 @@
 export PATH='/usr/local/kidsruby/ruby/bin/':$PATH
 export GEM_PATH=/usr/local/kidsruby/vendor/ruby/1.9.1:$GEM_PATH
 export LD_LIBRARY_PATH=/usr/local/kidsruby/vendor/dependencies:/usr/local/kidsruby/ruby/lib:$LD_LIBRARY_PATH
+export RUBYLIB=/usr/local/kidsruby/ruby/lib/ruby/1.9.1:/usr/local/kidsruby/ruby/lib/ruby/1.9.1/i686-linux:$RUBYLIB
 
 ruby /usr/local/kidsruby/main.rb

@@ -26,11 +26,25 @@ def compile_ruby
     system("GEM_HOME=#{project_root}/ruby/lib/ruby/gems/1.9.1/ && GEM_PATH=#{project_root}/ruby/lib/ruby/gems/1.9.1/ && bin/gem install bundler")
   end
 end
+
 def install_gems
   puts 'Bundling gems...'
   Dir.chdir(project_root) do
     Bundler.with_clean_env do
       system("PATH=#{project_root}/ruby/bin:$PATH && #{project_root}/ruby/lib/ruby/gems/1.9.1/gems/bundler-1.2.3/bin/bundle install --path vendor")
+    end
+  end
+end
+
+def update_ruby_binaries
+  puts "Scrubbing ruby binaries..."
+  Dir.glob("#{project_root}/ruby/bin/*").each do |file_name|
+    if file_name != "#{project_root}/ruby/bin/ruby"
+      puts file_name
+      text = File.read(file_name)
+      File.open(file_name, "w") do |f|
+        f.puts text.gsub("#{project_root}/ruby/bin/ruby", "/usr/local/kidsruby/ruby/bin/ruby")
+      end
     end
   end
 end

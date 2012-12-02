@@ -34,6 +34,7 @@ namespace :deb do
     Rake::Task['deb:clone'].invoke
     Rake::Task['deb:compile_ruby'].invoke
     Rake::Task['deb:install_gems'].invoke
+    Rake::Task['deb:update_ruby_binaries'].invoke
     Rake::Task['deb:build'].invoke
     Rake::Task['deb:copy'].invoke
     Rake::Task['deb:clean'].invoke
@@ -53,13 +54,16 @@ namespace :deb do
   task :install_gems do
     install_gems
   end
+  task :update_ruby_binaries do
+    update_ruby_binaries
+  end
   
   desc "Build a .deb package"
   task :build => pkg("/kidsruby-#{version}.deb")
 
   desc "Copy .deb package into project root directory"
   task :copy do
-   FileUtils.copy(pkg("/kidsruby-#{version}-#{architecture}.deb"),"kidsruby-#{version}-#{architecture}.deb") 
+   FileUtils.copy(pkg("/kidsruby-#{version}.deb"),"kidsruby-#{version}.deb") 
   end
 
   desc "Remove build artifacts for .deb"
