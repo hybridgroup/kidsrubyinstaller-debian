@@ -49,6 +49,13 @@ def update_ruby_binaries
   end
 end
 
+def copy_dependencies 
+  puts "Copying dependencies...."
+  FileUtils.mkdir_p("#{project_root}/vendor/dependencies")
+  FileUtils.cp("/usr/lib/libQtWebKit.so.4", "#{project_root}/vendor/dependencies/libQtWebKit.so.4", :verbose => true)
+  FileUtils.cp("/usr/lib/libQtOpenGL.so.4", "#{project_root}/vendor/dependencies/libQtOpenGL.so.4", :verbose => true)
+end
+
 def assemble(source, target, perms=0644)
   FileUtils.mkdir_p(File.dirname(target))
   File.open(target, "w") do |f|

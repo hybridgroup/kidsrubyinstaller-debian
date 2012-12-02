@@ -4,9 +4,6 @@ file pkg("/kidsruby-#{version}.deb") => distribution_files do |t|
       assemble_distribution
       assemble resource("deb/kidsruby"), "bin/kidsruby", 0755
     end
-    mkchdir("usr/local/kidsruby/vendor/dependencies") do
-      assemble resource("deb/libQtWebKit.so.4"), "libQtWebKit.so.4"
-    end
     mkchdir("usr/share") do
       assemble resource("deb/kidsruby.desktop"), "applications/kidsruby.desktop"
       assemble resource("deb/kidsrubylogo.png"), "pixmaps/kidsrubylogo.png"
@@ -34,6 +31,7 @@ namespace :deb do
     Rake::Task['deb:clone'].invoke
     Rake::Task['deb:compile_ruby'].invoke
     Rake::Task['deb:install_gems'].invoke
+    Rake::Task['deb:copy_dependencies'].invoke
     Rake::Task['deb:update_ruby_binaries'].invoke
     Rake::Task['deb:build'].invoke
     Rake::Task['deb:copy'].invoke
@@ -54,6 +52,11 @@ namespace :deb do
   task :install_gems do
     install_gems
   end
+
+  task :copy_dependencies do
+    copy_dependencies
+  end
+
   task :update_ruby_binaries do
     update_ruby_binaries
   end

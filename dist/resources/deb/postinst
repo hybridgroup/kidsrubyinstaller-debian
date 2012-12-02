@@ -2,18 +2,6 @@
 set -e -u
 ln -sf /usr/local/kidsruby/bin/kidsruby /usr/bin/kidsruby
 
-mkdir -p /usr/local/kidsruby/vendor/dependencies
-
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/ruby/qtruby/src/libqtruby4shared.so.2.0.0 /usr/local/kidsruby/vendor/dependencies/libqtruby4shared.so.2
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/smokebase/libsmokebase.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokebase.so.3
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtcore/libsmokeqtcore.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtcore.so.3
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtdbus/libsmokeqtdbus.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtdbus.so.3
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtgui/libsmokeqtgui.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtgui.so.3
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtnetwork/libsmokeqtnetwork.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtnetwork.so.3
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtopengl/libsmokeqtopengl.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtopengl.so.3
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtsql/libsmokeqtsql.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtsql.so.3
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtsvg/libsmokeqtsvg.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtsvg.so.3
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtwebkit/libsmokeqtwebkit.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtwebkit.so.3
-ln -sf /usr/local/kidsruby/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ext/build/smoke/qtxml/libsmokeqtxml.so.3.0.0 /usr/local/kidsruby/vendor/dependencies/libsmokeqtxml.so.3
+chmod +x /usr/local/kidsruby/vendor/dependencies/*
 chmod +x /usr/local/kidsruby/ruby/bin/*
 chmod +x /usr/local/kidsruby/ruby/lib/libruby.so*
