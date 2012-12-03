@@ -117,5 +117,5 @@ def installedsize
   File.size?(File.expand_path("../pkg/data.tar.gz", __FILE__)) / 1024
 end
 def architecture
-  %x{uname -p}
+  `echo -n "$(uname -m)"`
 end

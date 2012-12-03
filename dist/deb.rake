@@ -1,4 +1,4 @@
-file pkg("/kidsruby-#{version}.deb") => distribution_files do |t|
+file pkg("/kidsruby-#{version}-#{architecture}.deb") => distribution_files do |t|
   mkchdir(File.dirname(t.name)) do
     mkchdir("usr/local/kidsruby") do
       assemble_distribution
@@ -57,11 +57,11 @@ namespace :deb do
   end
 
   desc "Build a .deb package"
-  task :build => pkg("/kidsruby-#{version}.deb")
+  task :build => pkg("/kidsruby-#{version}-#{architecture}.deb")
 
   desc "Copy .deb package into project root directory"
   task :copy do
-   FileUtils.copy(pkg("/kidsruby-#{version}.deb"),"kidsruby-#{version}.deb") 
+   FileUtils.copy(pkg("/kidsruby-#{version}-#{architecture}.deb"),"kidsruby-#{version}-#{architecture}.deb") 
   end
 
   desc "Remove build artifacts for .deb"
