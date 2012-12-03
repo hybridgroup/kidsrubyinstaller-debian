@@ -5,7 +5,7 @@ This script requires ruby and bundler, it is suggested you use [rvm](https://rvm
 
 To configure your system and create the package
 ~~~
-  $ sudo apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build-essential libssl-dev libreadline6-dev zlib1g-dev git libqt4-dev cmake libyaml-dev install g++ libgl1-mesa-dev libpango1.0-dev libboost-dev libopenal-dev libsndfile-dev libxdamage-dev libsdl-ttf2.0-dev libfreeimage3 libfreeimage-dev libxinerama-dev wget
+  $ sudo apt-get -y install libc6-dev libssl-dev libmysql++-dev libsqlite3-dev make build-essential libssl-dev libreadline6-dev zlib1g-dev git libqt4-dev cmake libyaml-dev g++ libgl1-mesa-dev libpango1.0-dev libboost-dev libopenal-dev libsndfile-dev libxdamage-dev libsdl-ttf2.0-dev libfreeimage3 libfreeimage-dev libxinerama-dev wget
   $ git clone https://github.com/hybridgroup/kidsrubyinstaller-debian.git
   $ cd ./kidsrubyinstaller-debian
   $ bundle install
