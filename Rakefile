@@ -19,11 +19,8 @@ def compile_ruby
   Dir.chdir('ruby_tmp') do
     system("wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p320.tar.gz && tar -xzvf ruby-1.9.2-p320.tar.gz")
     Dir.chdir('ruby-1.9.2-p320') do
-      system("./configure --prefix=#{project_root}/ruby --enable-shared --disable-install-doc && make && make install")
+      system("./configure --prefix=/usr/local/kidsruby/ruby --enable-shared --disable-install-doc && make && make install DESTDIR=#{pkg_root}")
     end
-  end
-  Dir.chdir(project_root+"/ruby") do
-    system("GEM_HOME=#{project_root}/ruby/lib/ruby/gems/1.9.1/ && GEM_PATH=#{project_root}/ruby/lib/ruby/gems/1.9.1/ && bin/gem install bundler")
   end
 end
 
@@ -31,20 +28,8 @@ def install_gems
   puts 'Bundling gems...'
   Dir.chdir(project_root) do
     Bundler.with_clean_env do
-      system("PATH=#{project_root}/ruby/bin:$PATH && #{project_root}/ruby/lib/ruby/gems/1.9.1/gems/bundler-1.2.3/bin/bundle install --path vendor")
-    end
-  end
-end
-
-def update_ruby_binaries
-  puts "Scrubbing ruby binaries..."
-  Dir.glob("#{project_root}/ruby/bin/*").each do |file_name|
-    if file_name != "#{project_root}/ruby/bin/ruby"
-      puts file_name
-      text = File.read(file_name)
-      File.open(file_name, "w") do |f|
-        f.puts text.gsub("#{project_root}/ruby/bin/ruby", "/usr/local/kidsruby/ruby/bin/ruby")
-      end
+      system("echo gem \\'gosu\\' >> #{project_root}/Gemfile")
+      system("bundle install --path vendor")
     end
   end
 end
@@ -54,6 +39,9 @@ def copy_dependencies
   FileUtils.mkdir_p("#{project_root}/vendor/dependencies")
   FileUtils.cp("/usr/lib/libQtWebKit.so.4", "#{project_root}/vendor/dependencies/libQtWebKit.so.4", :verbose => true)
   FileUtils.cp("/usr/lib/libQtOpenGL.so.4", "#{project_root}/vendor/dependencies/libQtOpenGL.so.4", :verbose => true)
+  FileUtils.cp("/usr/lib/libfreeimage.so.3", "#{project_root}/vendor/dependencies/libfreeimage.so.3", :verbose => true)
+  FileUtils.cp("/usr/lib/libopenal.so.1", "#{project_root}/vendor/dependencies/libopenal.so.1", :verbose => true)
+  FileUtils.cp("/usr/lib/libSDL_ttf-2.0.so.0", "#{project_root}/vendor/dependencies/libSDL_ttf-2.0.so.0", :verbose => true)
 end
 
 def assemble(source, target, perms=0644)
@@ -112,6 +100,9 @@ end
 
 def project_root
   File.dirname(__FILE__)+"/tmp"
+end
+def pkg_root 
+  File.dirname(__FILE__)+"/pkg"
 end
 
 def resource(name)

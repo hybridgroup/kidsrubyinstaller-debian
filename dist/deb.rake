@@ -32,7 +32,6 @@ namespace :deb do
     Rake::Task['deb:compile_ruby'].invoke
     Rake::Task['deb:install_gems'].invoke
     Rake::Task['deb:copy_dependencies'].invoke
-    Rake::Task['deb:update_ruby_binaries'].invoke
     Rake::Task['deb:build'].invoke
     Rake::Task['deb:copy'].invoke
     Rake::Task['deb:clean'].invoke
@@ -57,10 +56,6 @@ namespace :deb do
     copy_dependencies
   end
 
-  task :update_ruby_binaries do
-    update_ruby_binaries
-  end
-  
   desc "Build a .deb package"
   task :build => pkg("/kidsruby-#{version}.deb")
 
