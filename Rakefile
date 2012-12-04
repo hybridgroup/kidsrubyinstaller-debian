@@ -29,7 +29,7 @@ def install_gems
   Dir.chdir(project_root) do
     Bundler.with_clean_env do
       system("echo gem \\'gosu\\' >> #{project_root}/Gemfile")
-      system("bundle install --path vendor")
+      system("bundle install --without test development --path vendor")
     end
   end
 end
@@ -75,7 +75,6 @@ def assemble_erb(source, target, perms=0644)
   end
   File.chmod(perms, target)
 end
-
 
 def assemble_distribution(target_dir=Dir.pwd)
   distribution_files.each do |source|
@@ -131,7 +130,7 @@ def version
   '1.2'
 end
 def installedsize
-  File.size?(File.expand_path("../pkg/data.tar.gz", __FILE__)) / 1024
+  `echo -n "$(du -s #{pkg_root} | cut -f -1)"`.to_i
 end
 def architecture
   `echo -n "$(uname -m)"`
