@@ -11,6 +11,7 @@ To configure your system and create the package
     libmysql++-dev libsqlite3-dev make build-essential libssl-dev   git libqt4-dev cmake \
     libyaml-dev g++ libpango1.0-dev libboost-dev libopenal-dev libsndfile-dev libxdamage-dev \
     libsdl-ttf2.0-dev libfreeimage3 libfreeimage-dev libxinerama-dev wget curl
+  $ git clone https://github.com/hybridgroup/kidsrubyinstaller-debian.git
   $ cd ./kidsrubyinstaller-debian
   $ bundle install
   $ rake deb:make
