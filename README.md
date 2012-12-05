@@ -8,7 +8,7 @@ To configure your system and create the package
   $ sudo apt-get install bison openssl libreadline5 libreadline-dev curl git-core zlib1g \
     zlib1g-dev libsqlite3-0 libsqlite3-dev sqlite3 libreadline-dev libreadline6-dev \
     libxml2-dev autoconf xorg-dev libgl1-mesa-dev libglu1-mesa-dev libc6-dev libssl-dev \
-    libmysql++-dev libsqlite3-dev make build-essential libssl-dev   git libqt4-dev cmake \
+    libmysql++-dev libsqlite3-dev make build-essential libssl-dev libgpm2 vim git libqt4-dev cmake \
     libyaml-dev g++ libpango1.0-dev libboost-dev libopenal-dev libsndfile-dev libxdamage-dev \
     libsdl-ttf2.0-dev libfreeimage3 libfreeimage-dev libxinerama-dev wget curl
   $ git clone https://github.com/hybridgroup/kidsrubyinstaller-debian.git
