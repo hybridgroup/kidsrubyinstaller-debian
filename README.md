@@ -18,4 +18,5 @@ To configure your system and create the package
 ~~~
 These commands will create a debian installer based upon the current Kidsruby master branch and place the debain package in the kidsrubyinstaller-debian project root directory.
 
-NOTE: For a raspberry pi compatible package you must build this package on a raspberry pi
+NOTE: For a raspberry pi compatible package you must build this package on a raspberry pi. It is also recommended that you do not overlock your raspberry pi,
+      if you do unpredictable results may occur. 
