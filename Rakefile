@@ -65,6 +65,7 @@ def copy_dependencies
     FileUtils.cp("/usr/lib/libdirect-1.2.so.0", "#{project_root}/vendor/dependencies/libdirect-1.2.so.0", :verbose => true)
     FileUtils.cp("/usr/lib/libfusion-1.2.so.0", "#{project_root}/vendor/dependencies/libfusion-1.2.so.0", :verbose => true)
     FileUtils.cp("/usr/lib/libdirectfb-1.2.so.0", "#{project_root}/vendor/dependencies/libdirectfb-1.2.so.0", :verbose => true)
+    FileUtils.cp("/usr/lib/libphonon.so.4", "#{project_root}/vendor/dependencies/libphonon.so.4", :verbose => true)
   end
   FileUtils.cp("/usr/lib/libfreeimage.so.3", "#{project_root}/vendor/dependencies/libfreeimage.so.3", :verbose => true)
 end
