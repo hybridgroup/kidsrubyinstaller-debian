@@ -56,7 +56,15 @@ def copy_dependencies
     FileUtils.cp("/usr/lib/libopenal.so.1", "#{project_root}/vendor/dependencies/libopenal.so.1", :verbose => true)
     FileUtils.cp("/usr/lib/libQtWebKit.so.4", "#{project_root}/vendor/dependencies/libQtWebKit.so.4", :verbose => true)
     FileUtils.cp("/usr/lib/libQtOpenGL.so.4", "#{project_root}/vendor/dependencies/libQtOpenGL.so.4", :verbose => true)
+    FileUtils.cp("/usr/lib/libQtCore.so.4", "#{project_root}/vendor/dependencies/libQtCore.so.4", :verbose => true)
+    FileUtils.cp("/usr/lib/libQtGui.so.4", "#{project_root}/vendor/dependencies/libQtGui.so.4", :verbose => true)
+    FileUtils.cp("/usr/lib/libQtNetwork.so.4", "#{project_root}/vendor/dependencies/libQtNetwork.so.4", :verbose => true)
+    FileUtils.cp("/usr/lib/libQtSvg.so.4", "#{project_root}/vendor/dependencies/libQtSvg.so.4", :verbose => true)
     FileUtils.cp("/usr/lib/libSDL_ttf-2.0.so.0", "#{project_root}/vendor/dependencies/libSDL_ttf-2.0.so.0", :verbose => true)
+    FileUtils.cp("/usr/lib/libSDL-1.2.so.0", "#{project_root}/vendor/dependencies/libSDL-1.2.so.0", :verbose => true)
+    FileUtils.cp("/usr/lib/libdirect-1.2.so.0", "#{project_root}/vendor/dependencies/libdirect-1.2.so.0", :verbose => true)
+    FileUtils.cp("/usr/lib/libfusion-1.2.s0.0", "#{project_root}/vendor/dependencies/libfusion-1.2.s0.0", :verbose => true)
+    FileUtils.cp("/usr/lib/libdirectfb-1.2.so.0", "#{project_root}/vendor/dependencies/libdirectfb-1.2.so.0", :verbose => true)
   end
   FileUtils.cp("/usr/lib/libfreeimage.so.3", "#{project_root}/vendor/dependencies/libfreeimage.so.3", :verbose => true)
 end
