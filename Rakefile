@@ -63,7 +63,7 @@ def copy_dependencies
     FileUtils.cp("/usr/lib/libSDL_ttf-2.0.so.0", "#{project_root}/vendor/dependencies/libSDL_ttf-2.0.so.0", :verbose => true)
     FileUtils.cp("/usr/lib/libSDL-1.2.so.0", "#{project_root}/vendor/dependencies/libSDL-1.2.so.0", :verbose => true)
     FileUtils.cp("/usr/lib/libdirect-1.2.so.0", "#{project_root}/vendor/dependencies/libdirect-1.2.so.0", :verbose => true)
-    FileUtils.cp("/usr/lib/libfusion-1.2.s0.0", "#{project_root}/vendor/dependencies/libfusion-1.2.s0.0", :verbose => true)
+    FileUtils.cp("/usr/lib/libfusion-1.2.so.0", "#{project_root}/vendor/dependencies/libfusion-1.2.so.0", :verbose => true)
     FileUtils.cp("/usr/lib/libdirectfb-1.2.so.0", "#{project_root}/vendor/dependencies/libdirectfb-1.2.so.0", :verbose => true)
   end
   FileUtils.cp("/usr/lib/libfreeimage.so.3", "#{project_root}/vendor/dependencies/libfreeimage.so.3", :verbose => true)
