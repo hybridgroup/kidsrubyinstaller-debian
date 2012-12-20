@@ -29,6 +29,7 @@ def install_gems
   Dir.chdir(project_root) do
     Bundler.with_clean_env do
       system("echo gem \\'gosu\\' >> #{project_root}/Gemfile")
+      system("echo gem \\'hybridgroup-sphero\\' >> #{project_root}/Gemfile")
       system("bundle install --without test development --path vendor")
     end
   end
