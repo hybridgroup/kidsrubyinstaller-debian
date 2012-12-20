@@ -120,7 +120,7 @@ def version
   '1.2'
 end
 def installedsize
-  `echo -n "$(du -s #{pkg_root} | cut -f -1)"`.to_i
+  `echo -n "$(du -s #{pkg_root}/usr | cut -f -1)"`.to_i
 end
 def architecture
   `echo -n "$(uname -m)"`
