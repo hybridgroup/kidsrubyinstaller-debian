@@ -32,6 +32,7 @@ def install_gems
       system("bundle install --without test development --path vendor")
     end
   end
+  system("cd #{project_root}/vendor/ruby/1.9.1/gems/qtbindings-4.6.3.4/ && rm -rfv bin/ examples/ ext/")
 end
 
 def copy_dependencies 
