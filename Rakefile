@@ -37,42 +37,17 @@ end
 def copy_dependencies 
   puts "Copying dependencies...."
   FileUtils.mkdir_p("#{project_root}/vendor/dependencies")
+  dep = ["libQtCore.so.4", "libQtGui.so.4", "libQtSvg.so.4","libQtWebKit.so.4","libQtOpenGL.so.4","libopenal.so.1","libSDL_ttf-2.0.so.0","libQtNetwork.so.4","libQtDBus.so.4","libQtXml.so.4","libQtSql.so.4","libQtXmlPatterns.so.4","libfreeimage.so.3"]
   if architecture == 'armv6l'
-    FileUtils.cp("/usr/lib/arm-linux-gnueabihf/libQtWebKit.so.4", "#{project_root}/vendor/dependencies/libQtWebKit.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/arm-linux-gnueabihf/libQtOpenGL.so.4", "#{project_root}/vendor/dependencies/libQtOpenGL.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/arm-linux-gnueabihf/libopenal.so.1", "#{project_root}/vendor/dependencies/libopenal.so.1", :verbose => true)
-    FileUtils.cp("/usr/lib/arm-linux-gnueabihf/libSDL_ttf-2.0.so.0", "#{project_root}/vendor/dependencies/libSDL_ttf-2.0.so.0", :verbose => true)
-    FileUtils.cp("/usr/lib/arm-linux-gnueabihf/libQtNetwork.so.4", "#{project_root}/vendor/dependencies/libQtNetwork.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/arm-linux-gnueabihf/libQtDBus.so.4", "#{project_root}/vendor/dependencies/libQtDBus.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/arm-linux-gnueabihf/libQtXml.so.4", "#{project_root}/vendor/dependencies/libQtXml.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/arm-linux-gnueabihf/libQtSql.so.4", "#{project_root}/vendor/dependencies/libQtSql.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libIlmImf.so.6", "#{project_root}/vendor/dependencies/libIlmImf.so.6", :verbose => true)
-    FileUtils.cp("/usr/lib/libImath.so.6", "#{project_root}/vendor/dependencies/libImath.so.6", :verbose => true)
-    FileUtils.cp("/usr/lib/libHalf.so.6", "#{project_root}/vendor/dependencies/libHalf.so.6", :verbose => true)
-    FileUtils.cp("/usr/lib/libIex.so.6", "#{project_root}/vendor/dependencies/libIex.so.6", :verbose => true)
-    FileUtils.cp("/usr/lib/libIlmThread.so.6", "#{project_root}/vendor/dependencies/libIlmThread.so.6", :verbose => true)
-    FileUtils.cp("/usr/lib/arm-linux-gnueabihf/libraw.so.5", "#{project_root}/vendor/dependencies/libraw.so.5", :verbose => true)
+    a = ["libIlmImf.so.6","libImath.so.6","libHalf.so.6","libIex.so.6","libIlmThread.so.6","libraw.so.5"]
   else
-    FileUtils.cp("/usr/lib/libopenal.so.1", "#{project_root}/vendor/dependencies/libopenal.so.1", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtWebKit.so.4", "#{project_root}/vendor/dependencies/libQtWebKit.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtOpenGL.so.4", "#{project_root}/vendor/dependencies/libQtOpenGL.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtCore.so.4", "#{project_root}/vendor/dependencies/libQtCore.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtGui.so.4", "#{project_root}/vendor/dependencies/libQtGui.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtNetwork.so.4", "#{project_root}/vendor/dependencies/libQtNetwork.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtSvg.so.4", "#{project_root}/vendor/dependencies/libQtSvg.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libSDL_ttf-2.0.so.0", "#{project_root}/vendor/dependencies/libSDL_ttf-2.0.so.0", :verbose => true)
-    FileUtils.cp("/usr/lib/libSDL-1.2.so.0", "#{project_root}/vendor/dependencies/libSDL-1.2.so.0", :verbose => true)
-    FileUtils.cp("/usr/lib/libdirect-1.2.so.0", "#{project_root}/vendor/dependencies/libdirect-1.2.so.0", :verbose => true)
-    FileUtils.cp("/usr/lib/libfusion-1.2.so.0", "#{project_root}/vendor/dependencies/libfusion-1.2.so.0", :verbose => true)
-    FileUtils.cp("/usr/lib/libdirectfb-1.2.so.0", "#{project_root}/vendor/dependencies/libdirectfb-1.2.so.0", :verbose => true)
-    FileUtils.cp("/usr/lib/libphonon.so.4", "#{project_root}/vendor/dependencies/libphonon.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtDBus.so.4", "#{project_root}/vendor/dependencies/libQtDBus.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtXml.so.4", "#{project_root}/vendor/dependencies/libQtXml.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtSql.so.4", "#{project_root}/vendor/dependencies/libQtSql.so.4", :verbose => true)
-    FileUtils.cp("/usr/lib/libaudio.so.2", "#{project_root}/vendor/dependencies/libaudio.so.2", :verbose => true)
-    FileUtils.cp("/usr/lib/libQtXmlPatterns.so.4", "#{project_root}/vendor/dependencies/libQtXmlPatterns.so.4", :verbose => true)
+    a = ["libSDL-1.2.so.0","libdirect-1.2.so.0", "libfusion-1.2.so.0","libdirectfb-1.2.so.0","libphonon.so.4","libaudio.so.2"]
   end
-  FileUtils.cp("/usr/lib/libfreeimage.so.3", "#{project_root}/vendor/dependencies/libfreeimage.so.3", :verbose => true)
+  dep = dep + a
+  dep.each do |lib|
+    f = `echo -n $(find /usr/lib -name #{lib})`
+    FileUtils.cp("#{f}", "#{project_root}/vendor/dependencies/#{lib}", :verbose => true)
+  end
 end
 
 def assemble(source, target, perms=0644)

@@ -10,7 +10,7 @@ To configure your system and create the package
     libxml2-dev autoconf xorg-dev libgl1-mesa-dev libglu1-mesa-dev libc6-dev libssl-dev \
     libmysql++-dev libsqlite3-dev make build-essential libssl-dev libgpm2 vim libqt4-dev cmake \
     libyaml-dev g++ libpango1.0-dev libboost-dev libopenal-dev libsndfile-dev libxdamage-dev \
-    libsdl-ttf2.0-dev libfreeimage3 libfreeimage-dev libxinerama-dev wget curl
+    libsdl-ttf2.0-dev libfreeimage3 libfreeimage-dev libxinerama-dev wget libphonon4 curl
   $ git clone https://github.com/hybridgroup/kidsrubyinstaller-debian.git
   $ cd ./kidsrubyinstaller-debian
   $ bundle install
@@ -20,3 +20,5 @@ These commands will create a debian installer based upon the current Kidsruby ma
 
 NOTE: For a raspberry pi compatible package you must build this package on a raspberry pi. It is also recommended that you do not overlock your raspberry pi,
       if you do unpredictable results may occur. 
+
+      This script has been tested to build on Ubuntu 10.04 LTS for maximum Ubuntu compatibility. 
