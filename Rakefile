@@ -39,11 +39,11 @@ end
 def copy_dependencies 
   puts "Copying dependencies...."
   FileUtils.mkdir_p("#{project_root}/vendor/dependencies")
-  dep = ["libQtCore.so.4", "libQtGui.so.4", "libQtSvg.so.4","libQtWebKit.so.4","libQtOpenGL.so.4","libopenal.so.1","libSDL_ttf-2.0.so.0","libQtNetwork.so.4","libQtDBus.so.4","libQtXml.so.4","libQtSql.so.4","libQtXmlPatterns.so.4","libfreeimage.so.3"]
+  dep = ["libQtCore.so.4", "libQtGui.so.4", "libQtSvg.so.4","libQtWebKit.so.4","libQtOpenGL.so.4","libopenal.so.1","libSDL_ttf-2.0.so.0","libQtNetwork.so.4","libQtDBus.so.4","libQtXml.so.4","libQtSql.so.4","libQtXmlPatterns.so.4","libfreeimage.so.3", "libaudio.so.2"]
   if architecture == 'armv6l'
     a = ["libIlmImf.so.6","libImath.so.6","libHalf.so.6","libIex.so.6","libIlmThread.so.6","libraw.so.5"]
   else
-    a = ["libSDL-1.2.so.0","libdirect-1.2.so.0", "libfusion-1.2.so.0","libdirectfb-1.2.so.0","libphonon.so.4","libaudio.so.2"]
+    a = ["libSDL-1.2.so.0","libdirect-1.2.so.0", "libfusion-1.2.so.0","libdirectfb-1.2.so.0","libphonon.so.4"]
   end
   dep = dep + a
   dep.each do |lib|
