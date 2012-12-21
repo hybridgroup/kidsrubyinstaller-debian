@@ -10,7 +10,8 @@ end
 
 def fetch_current
   puts 'Cloning kidsruby...'
-  Git.clone("https://github.com/hybridgroup/kidsruby.git", 'tmp') 
+  g = Git.clone("https://github.com/hybridgroup/kidsruby.git", 'tmp') 
+  g.branch("release").checkout
 end
 
 def compile_ruby
