@@ -18,7 +18,7 @@ To configure your system and create the package
 ~~~
 These commands will create a debian installer based upon the current Kidsruby release branch and place the debain package in the kidsrubyinstaller-debian project root directory.
 
-The package can be installed through your systems debian package installer or by issuing the commands
+The package can be installed through your systems debian package installer or by issuing the command
 ~~~
   $ sudo dpkg -i kidsruby.deb
 ~~~
