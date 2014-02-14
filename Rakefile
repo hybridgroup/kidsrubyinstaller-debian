@@ -11,7 +11,7 @@ end
 def fetch_current
   puts 'Cloning kidsruby...'
   g = Git.clone("https://github.com/hybridgroup/kidsruby.git", 'tmp') 
-  g.branch("release").checkout
+  g.branch("v1.4.0").checkout
 end
 
 def compile_ruby
@@ -44,7 +44,7 @@ def copy_dependencies
   if architecture == 'armv6l'
     a = ["libIlmImf.so.6","libImath.so.6","libHalf.so.6","libIex.so.6","libIlmThread.so.6","libraw.so.5"]
   else
-    a = ["libSDL-1.2.so.0","libdirect-1.2.so.0", "libfusion-1.2.so.0","libdirectfb-1.2.so.0","libphonon.so.4"]
+    a = ["libSDL-1.2.so.0","libdirect-1.2.so.9", "libfusion-1.2.so.9","libdirectfb-1.2.so.9","libphonon.so.4", "libIlmImf.so.6", "libopenjpeg.so.2", "libraw.so.5" ,"libHalf.so.6" ,"libIex.so.6" ,"libImath.so.6", "libIlmThread.so.6"]
   end
   dep = dep + a
   dep.each do |lib|
@@ -117,9 +117,7 @@ def resource(name)
   File.expand_path("../dist/resources/#{name}", __FILE__)
 end
 def version
-#  require File.expand_path("../tmp/app/models/version", __FILE__)
-#  KidsRuby::VERSION
-  '1.2'
+  '1.4.0.1'
 end
 def installedsize
   `echo -n "$(du -s #{pkg_root}/usr | cut -f -1)"`.to_i
